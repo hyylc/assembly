@@ -32,8 +32,7 @@ STOSW
 JMP LAB1
 
 LAB2:
-OVER:
-JMP OVER
+RETF
 
 hello db "hello,world",0
 
