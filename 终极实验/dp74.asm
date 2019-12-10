@@ -1,0 +1,31 @@
+section text
+bits 16
+Begin:
+MOV BH,0
+MOV DH,5
+MOV DL,8
+MOV AH,2
+INT 10H
+
+CLD
+MOV AX,CS
+MOV DS,AX
+MOV SI,hello
+ADD SI,7C00H
+
+LAB1:
+LODSB
+OR AL,AL
+JZ LAB2
+MOV AH,14
+INT 10H
+JMP SHORT LAB1
+
+LAB2:
+OVER:
+JMP OVER
+
+hello db "hello,world",0
+
+times 510-($-$$) db 0
+db 55H,0AAH
