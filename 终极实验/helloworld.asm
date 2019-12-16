@@ -3,7 +3,7 @@ Version dw 1
 Length dw end_of_text
 Start dw Begin
 Zoneseg dw 0088H
-Reserved dd 0 
+Reserved dd 0
 
 section text
 bits 16
