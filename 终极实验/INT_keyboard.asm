@@ -59,7 +59,6 @@ int09h_handler:
     ;
     POPA
     IRET
-
 Int09hfun:
     CMP     AL,1CH
     JNZ     .LAB1
