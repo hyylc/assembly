@@ -20,7 +20,7 @@ MOV SI,hello
 
 MOV AX,0B800H
 MOV ES,AX
-MOV DI,(80*5+8)*2
+MOV DI,(80*5+40)*2
 
 MOV AH,47H
 
@@ -35,8 +35,4 @@ LAB2:
 RETF
 
 hello db "hello,world",0
-
-times 510-($-$$) db 0
-db 55H,0AAH
-
 end_of_text:
