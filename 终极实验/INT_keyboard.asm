@@ -69,10 +69,13 @@ Int09hfun:
 .LAB1:
     CMP     AL,02H
     JB      .LAB3
-    CMP     AL,0AH
+    CMP     AL,0BH
     JA      .LAB3
     MOV     AH,AL
     ADD     AL,2FH
+    CMP     AL,3AH
+    JNZ     .LAB2
+    SUB     AL,10
 
 .LAB2:
     CALL    Enqueue
