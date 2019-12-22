@@ -241,10 +241,10 @@ buffer:
     DB   9
     DB   "123456789"
 
-mess0 db "Input sector address",0
-mess1 db "Invalid code...",0DH,0AH,0
-mess2 db "Reading disk error...",0DH,0AH,0
-mess3 db "Halt...",0
+mess0 db "Please enter:",0DH,0AH,"0-halt ","1-hello ","2-Time ","4-div ","5-keyboard ","6-I/O ","7-time ","8-Snake",0DH,0AH,0
+mess1 db "Invalid code..",0DH,0AH,0
+mess2 db "Reading disk error..",0DH,0AH,0
+mess3 db "Halt..",0
 
 times 510-($-$$) db 0
 db 55H,0AAH
