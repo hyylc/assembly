@@ -31,11 +31,11 @@
 	wel  db "Welcome to play this funny game!",0			;提示界面欢迎信息
 	wel2 db "Press any key to continue:",0							;初始界面提示信息
 		 db 0AH,0DH,0
-	faliure db "You have failed, try again! :)",0					;失败提示信息
+	faliure db "You have failed, try again!",0					;失败提示信息
 		 db 0AH,0DH,0
 	scorestr db "score:"											;显示分数
 	SCORE_STRING db 30H,0,0,0,0,0									;显示分数
-	CurLin db 11													;输出信息的行值
+	Currow db 8													;输出信息的行值
 	CurCol db 6                 									;输出信息的列值
 	count    DB   1                 								;计数器
     old1ch   DD   0                 								;用于保存原1CH号中断向量
@@ -94,13 +94,13 @@ SHOW_SCORE:
 		PUSH AX
 		MOV AL,60
 		MOV BYTE [CurCol],AL
-		MOV AL,[CurLin]
+		MOV AL,[Currow]
 		PUSH AX
-		MOV BYTE [CurLin],1
+		MOV BYTE [Currow],1
 		MOV DX,  scorestr
 		CALL PutStr_Red
 		POP AX
-		MOV [CurLin],AL
+		MOV [Currow],AL
 		POP AX 
 		MOV [CurCol],AL
 		POP DS
@@ -237,14 +237,14 @@ WELL_SHOW:
 ;出口参数：无                  
 ;-----------------------------------------------------------------------------
 WELCOME_SHOW:
-		MOV DX,wel
-		CALL PutStr_Red
+		;MOV DX,wel
+		;CALL PutStr_Red
 		MOV AL,  [CurCol]
 		ADD AL,5
 		MOV [CurCol], AL
-		MOV AL,  [CurLin]
+		MOV AL,  [Currow]
 		ADD AL,2
-		MOV [CurLin], AL
+		MOV [Currow], AL
 		MOV DX,wel2
 		CALL PutStr_Red
 		RET 
@@ -278,7 +278,7 @@ PutStr_Red: ;显示字符串（以0结尾）
 		MOV DL ,[CurCol]
 		MOV AL,[SI]
 	Red_Lab1:
-		MOV DH,[CurLin]
+		MOV DH,[Currow]
 		MOV BL,0X07
 		MOV BH,0
 		MOV CX,1
@@ -690,7 +690,7 @@ LABLE1:
       MOV BX,stone_position
       MOV DH,[BX]
       MOV DL,[BX+1]
-      MOV AL,'$'
+      MOV AL,'*'
       MOV BH,0
       MOV BL,30H
 	  PUSH CX 
